@@ -1,9 +1,21 @@
 export default function AssistiveTechInfo({pokemonsData, matchedCards}) {
     return (
-        <section className="sr-only" aria-live="polite" aria-atomic="true">
+        <div className="tech-info-wrapper" aria-live="polite" aria-atomic="true">
             <h2>Game Status</h2>
-            <p>Number of matched pairs: {matchedCards.length}</p>
-            <p>Number of cards left to match: {pokemonsData.length - matchedCards.length}</p>
-        </section>
+            <div>
+                <div>
+                    <span>Number of matched pairs</span>
+                    <b>
+                        {matchedCards.length}
+                    </b>
+                </div>
+                <div>
+                    <span>Number of cards left to match</span>
+                    <b>
+                        {pokemonsData.length - matchedCards.length}
+                    </b>
+                </div>
+            </div>
+        </div>
     )
 }

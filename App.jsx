@@ -3,11 +3,9 @@ import Form from '/components/Form'
 import MemoryCard from '/components/MemoryCard'
 import AssistiveTechInfo from './components/AssistiveTechInfo'
 import GameOver from './components/GameOver'
-import ErrorCard from './components/CardError'
-import {pokemon} from './data/data';
+import {pokemon, pokemonTypeColors} from './data/data';
 
 export default function App() {
-
     const [formData, setFormData] = useState({category:"Normal", number: 10})
     const [isGameOn, setIsGameOn] = useState(false)
     const [pokemonsData, setPokemonsData] = useState([])
@@ -28,19 +26,14 @@ export default function App() {
         }
     }, [matchedCards])
 
-    async function startGame(e) {
-        e.preventDefault()
+    async function startGame() {
+        const data = pokemon.filter(({type})=> type.includes(formData.category))
+        console.log(data.length);
         
-        try {            
-            const data = pokemon.filter(({type})=> type.includes(formData.category))
-            const dataSlice = getDataSlice(data)
-            const pokemonsArray = getPokemonArray(dataSlice)
-            setPokemonsData(pokemonsArray);
-            setIsGameOn(true)
-        } catch(err) {
-            console.error(err)
-            setIsError(true)
-        }   
+        const dataSlice = getDataSlice(data)
+        const pokemonsArray = getPokemonArray(dataSlice)
+        setPokemonsData(pokemonsArray);
+        setIsGameOn(true)
     }
 
     function getPokemonArray(data){
@@ -75,21 +68,24 @@ export default function App() {
     function handleFormChange({target}){
         setFormData(prevFormData => ({...prevFormData, [target.name]: target.value}))
     }
-    
     return (
         <main>
-            <h1>Memory</h1>
-            {!isGameOn && <Form handleSubmit={startGame} handleChange={handleFormChange} />}
-            {isGameOn && !areAllCardsMatched && <AssistiveTechInfo pokemonsData={pokemonsData} matchedCards={matchedCards}/>}
-            {areAllCardsMatched && <GameOver handleSubmit={resetGame} />}
-            {isGameOn && 
-                <MemoryCard 
-                    data={pokemonsData}
-                    handleClick={turnCard} 
-                    selectedCards={selectedCards}
-                    matchedCards={matchedCards}
-                />}
-            {isError && <ErrorCard handleSubmit={resetError} />}
+            <div>
+                {!isGameOn && <Form handleSubmit={startGame} handleChange={handleFormChange} />}
+                {isGameOn && !areAllCardsMatched && <AssistiveTechInfo pokemonsData={pokemonsData} matchedCards={matchedCards}/>}
+                {areAllCardsMatched && <GameOver handleSubmit={resetGame} />}
+
+            </div>
+            <div>
+                {isGameOn && 
+                    <MemoryCard 
+                        data={pokemonsData}
+                        handleClick={turnCard} 
+                        selectedCards={selectedCards}
+                        matchedCards={matchedCards}
+                        accentColor={pokemonTypeColors[formData.category]}
+                    />}
+            </div>
         </main>
     )
 }

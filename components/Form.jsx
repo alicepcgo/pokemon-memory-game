@@ -3,9 +3,11 @@ import Select from './Select'
 
 export default function Form({ handleSubmit, handleChange}) {
     return (
-        <div className='formContainer'>
-            <form className="wrapper">
+        <div>
+            <form>
+                <div>
                     <Select handleChange={handleChange}></Select>
+                </div>
                 <RegularButton handleClick={handleSubmit}>
                     Start Game
                 </RegularButton>

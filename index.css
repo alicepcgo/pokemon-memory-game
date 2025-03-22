@@ -1,250 +1,132 @@
 @font-face {
-    font-family: 'pixeled';
+    font-family: Pixeled;
     src: url('./assets/Pixeled.ttf');
 }
-
-* {
-    margin: 0;
-}
-
 :root {
-    --dark-primary: #830404;
-    --light-primary: #f0f9ff;
-    --light-secondary: #cbd5e1;
-    --accent: #fde68a;
-    --btn-disabled: #a8a29e;
+    --card-bg: rgba(0, 0, 0, 0.2);
 }
 
-body {
-    line-height: 2;
-    font-family: 'Inter', sans-serif;
-    background: var(--dark-primary);
-    color: var(--light-primary);
-    text-align: center;
-    min-height: 100vh;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2em;
-    height: 100%;
-    min-height: 100vh;
-    padding: 2em;
-}
-
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-    background-color: var(--light-secondary);
-    color: var(--dark-primary);
-    border-radius: .5em;
-}
-
-.wrapper--accent {
-    padding: 2em 3em;
-    border: 1px solid var(--dark-primary);
-    box-shadow: 0 0 5px 2px var(--light-primary);
-    
-}
-
-h1 {
-    color: var(--accent);
-    font-size: 2.25rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+body{
     margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: rgb(255,184,0);
+    background: linear-gradient(204deg, rgba(255,184,0,1) 0%, rgba(241,255,0,1) 100%);
+    color: white;
+    font-family: sans-serif;
 }
-
-.p--large {
-    font-size: 1.5rem;
-}
-
-.p--regular {
-    font-size: 1.125em;    
-}
-
-/*===========================
-Buttons
-============================*/
-.btn {
-    background-color: var(--light-primary);
-    color: var(--dark-primary);
-    font-family: inherit;
-    border: 2px solid var(--dark-primary);
-    border-radius: .5em;
-    cursor: pointer;
-}
-
-.btn--text {
-    background-color: var(--dark-primary);
-    color: var(--light-primary);
-    font-size: 1.25rem;
-    width: max-content;
-    margin: 0 auto;
-    padding: .25em .75em;
-}
-
-.btn--pokemon {
-    width: 100%;
-    height: 100px;
-    border: 2px solid var(--light-primary);
-}
-
-.btn--pokemon span{
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1rem !important;
-    font-family: pixeled;
-    color: var(--dark-primary);
-}
-.btn--pokemon img{
+main{
+    display: grid;
+    grid-template-rows: 1fr 4fr;
     height: 100%;
+    min-width: 700px;
+    gap: 8px;
 }
 
-.btn--text:hover,
-.btn--text:focus {
-    background-color: var(--light-primary);
-    color: var(--dark-primary);
-    box-shadow: 0 0 5px 1px var(--dark-primary);
-}
-
-/*===========================
-Form
-============================*/
-
-.form-container {
+main>div {
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
-    text-align: start;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 16px;
 }
 
 form {
-    gap: 2em;
-    font-size: 1.125rem;
-    padding: 1em;
-    border-radius: .5em;
-}
-
-.form__inner-wrapper {
     display: flex;
     flex-direction: column;
-    gap: .5em;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
 }
 
-select {
-    background-color: var(--dark-primary);
-    color: var(--light-primary);
-    font-family: inherit;
-    padding: .5em;
-    border: 1px solid var(--dark-primary);
-    border-radius: .5em;
-    cursor: pointer;
+form>div {
+    display: flex;
+    gap: 16px;
 }
 
-select:hover,
-select:focus {
-    background-color: var(--light-primary);
-    color: var(--dark-primary);
-    box-shadow: 0 0 2px 1px var(--dark-primary);
+.form-select {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.card-container {
-    padding-left: 0;
+.form-select label{
+    font-size: 1rem;
+}
+
+.form-select select {
+    font-size: 1rem;
+    padding: 4px;
+}
+
+h1, h2, b{
+    font-family: Pixeled;
+    line-height: 1;
+}
+
+ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 1em;
     width: 100%;
+    padding: 0;
+    gap: 4px;
 }
 
-.card-item {
+li {
     list-style: none;
 }
 
-/* Animated memory card */
-.card-item--selected,
-.card-item--matched,
-.btn--pokemon__back--selected,
-.btn--pokemon__back--matched {
-    transform: rotateY(180deg);
+button{
+    font-family: Pixeled;
+    line-height: 1;
+    font-size: 1.2rem;
+    border: none;
+    padding: 16px;
+    background-color: white;
 }
 
-.card-item--selected {
-    transition: .6s;
-    transform-style: preserve-3d;
+button.pokemon-card {
+    width: 100%;
+    height: 100px;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+span{
+    font-size: 1.5rem;
 }
 
-.btn--pokemon__front,
-.btn--pokemon__back--selected {
-    backface-visibility: hidden;    
+button.pokemon-card>img{
+    height: 100%;
 }
 
-.btn--pokemon__back--matched {
-    backface-visibility: unset;
-    background-color: var(--btn-disabled);
-    border: 2px solid var(--btn-disabled);
-    cursor: not-allowed;
+button.pokemon-card>span{
+    font-size: .6rem;
 }
 
-.btn--pokemon__front:hover,
-.btn--pokemon__front:focus {
-    background-color: var(--accent);
-    border: 2px solid var(--dark-primary);
-    box-shadow: 0 0 5px 2px var(--light-primary);
-    cursor: pointer;
+.tech-info-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.card-item--selected .btn--pokemon__back--selected {
-    border: 2px solid var(--dark-primary);
-    box-shadow: 0 0 5px 2px var(--light-primary);
+.tech-info-wrapper>div{
+    display: flex;
+    gap: 8px;
 }
 
-
-.sr-only {
-	border: 0 !important;
-	clip: rect(1px, 1px, 1px, 1px) !important;
-	-webkit-clip-path: inset(50%) !important;
-		clip-path: inset(50%) !important;
-	height: 1px !important;
-	margin: -1px !important;
-	overflow: hidden !important;
-	padding: 0 !important;
-	position: absolute !important;
-	width: 1px !important;
-	white-space: nowrap !important;
+.tech-info-wrapper>div div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-@media (min-width: 768px) {
-    h1 {
-        font-size: 2.75rem;
-    }
-
-    .btn--pokemon {
-        font-size: 4rem;
-        height: 110px;
-    }
-
-    .card-container {
-        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-    }
-}
-
-@media (min-width: 1024px) {
-    h1 {
-        font-size: 3.25rem;
-    }
-
-    .btn--pokemon {
-        font-size: 4.5rem;
-        height: 125px;
-    }
-
-    .card-container {
-        grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-    }
+b{
+    font-size: 2rem;
 }

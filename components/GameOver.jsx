@@ -9,8 +9,8 @@ export default function GameOver({handleSubmit}){
         divRef.current.focus()
     }, [])
     return (
-        <div className="wrapper wrapper--accent" ref={divRef} tabIndex={-1}>
-            <p className='p--large'>All cards are matched!</p>
+        <div className="tech-info-wrapper" ref={divRef} tabIndex={-1}>
+            <span>All cards are matched!</span>
             <RegularButton handleClick={handleSubmit}>
                 Restart the game!
             </RegularButton>

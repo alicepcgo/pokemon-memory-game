@@ -1,17 +1,16 @@
 import PokemonButton from "./PokemonButton"
 
-export default function MemoryCard({ handleClick, data, selectedCards, matchedCards }) {
+export default function MemoryCard({ handleClick, data, selectedCards, matchedCards, accentColor }) {
     
     const pokemonEl = data.map((pokemon, index) =>{
             const selectedCardEntry = selectedCards.find(pokemon => pokemon.index == index)
             const matchedCardEntry = matchedCards.find(pokemon => pokemon.index == index)
 
-            const cardStyle = matchedCardEntry ? "card-item--matched" : selectedCardEntry ? "card-item--selected" : ""
             return (
-                <li key={index} className={`card-item ${cardStyle}`}>
+                <li key={index}>
                     <PokemonButton
                         pokemon={pokemon}
-                        style="btn btn--pokemon"
+                        accentColor={accentColor}
                         handleClick={() => handleClick(pokemon.name, index)}
                         selectedCardEntry={selectedCardEntry}
                         matchedCardEntry={matchedCardEntry}
@@ -22,5 +21,5 @@ export default function MemoryCard({ handleClick, data, selectedCards, matchedCa
         }
     )
     
-    return <ul className="card-container">{pokemonEl}</ul>
+    return <ul>{pokemonEl}</ul>
 }
