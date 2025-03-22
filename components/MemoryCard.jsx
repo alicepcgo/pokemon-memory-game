@@ -1,18 +1,18 @@
-import EmojiButton from "./EmojiButton"
+import PokemonButton from "./PokemonButton"
 
 export default function MemoryCard({ handleClick, data, selectedCards, matchedCards }) {
     
-    const emojiEl = data.map((emoji, index) =>{
-            const selectedCardEntry = selectedCards.find(emoji => emoji.index == index)
-            const matchedCardEntry = matchedCards.find(emoji => emoji.index == index)
+    const pokemonEl = data.map((pokemon, index) =>{
+            const selectedCardEntry = selectedCards.find(pokemon => pokemon.index == index)
+            const matchedCardEntry = matchedCards.find(pokemon => pokemon.index == index)
 
             const cardStyle = matchedCardEntry ? "card-item--matched" : selectedCardEntry ? "card-item--selected" : ""
             return (
                 <li key={index} className={`card-item ${cardStyle}`}>
-                    <EmojiButton
-                        emoji={emoji}
-                        style="btn btn--emoji"
-                        handleClick={() => handleClick(emoji.name, index)}
+                    <PokemonButton
+                        pokemon={pokemon}
+                        style="btn btn--pokemon"
+                        handleClick={() => handleClick(pokemon.name, index)}
                         selectedCardEntry={selectedCardEntry}
                         matchedCardEntry={matchedCardEntry}
                         index={index}
@@ -22,5 +22,5 @@ export default function MemoryCard({ handleClick, data, selectedCards, matchedCa
         }
     )
     
-    return <ul className="card-container">{emojiEl}</ul>
+    return <ul className="card-container">{pokemonEl}</ul>
 }

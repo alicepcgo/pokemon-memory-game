@@ -1,19 +1,22 @@
+@font-face {
+    font-family: 'pixeled';
+    src: url('./assets/Pixeled.ttf');
+}
+
 * {
     margin: 0;
 }
 
 :root {
-    --dark-primary: #082f49;
+    --dark-primary: #830404;
     --light-primary: #f0f9ff;
     --light-secondary: #cbd5e1;
     --accent: #fde68a;
     --btn-disabled: #a8a29e;
 }
 
-/*===========================
-Layout
-============================*/
 body {
+    line-height: 2;
     font-family: 'Inter', sans-serif;
     background: var(--dark-primary);
     color: var(--light-primary);
@@ -46,10 +49,6 @@ main {
     box-shadow: 0 0 5px 2px var(--light-primary);
     
 }
-
-/*===========================
-Typography
-============================*/
 
 h1 {
     color: var(--accent);
@@ -88,11 +87,23 @@ Buttons
     padding: .25em .75em;
 }
 
-.btn--emoji {
+.btn--pokemon {
     width: 100%;
     height: 100px;
-    font-size: 3rem;
     border: 2px solid var(--light-primary);
+}
+
+.btn--pokemon span{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem !important;
+    font-family: pixeled;
+    color: var(--dark-primary);
+}
+.btn--pokemon img{
+    height: 100%;
 }
 
 .btn--text:hover,
@@ -143,9 +154,6 @@ select:focus {
     box-shadow: 0 0 2px 1px var(--dark-primary);
 }
 
-/*===========================
-Game
-============================*/
 .card-container {
     padding-left: 0;
     display: grid;
@@ -161,8 +169,8 @@ Game
 /* Animated memory card */
 .card-item--selected,
 .card-item--matched,
-.btn--emoji__back--selected,
-.btn--emoji__back--matched {
+.btn--pokemon__back--selected,
+.btn--pokemon__back--matched {
     transform: rotateY(180deg);
 }
 
@@ -171,34 +179,32 @@ Game
     transform-style: preserve-3d;
 }
 
-.btn--emoji__front,
-.btn--emoji__back--selected {
+.btn--pokemon__front,
+.btn--pokemon__back--selected {
     backface-visibility: hidden;    
 }
 
-.btn--emoji__back--matched {
+.btn--pokemon__back--matched {
     backface-visibility: unset;
     background-color: var(--btn-disabled);
     border: 2px solid var(--btn-disabled);
     cursor: not-allowed;
 }
 
-.btn--emoji__front:hover,
-.btn--emoji__front:focus {
+.btn--pokemon__front:hover,
+.btn--pokemon__front:focus {
     background-color: var(--accent);
     border: 2px solid var(--dark-primary);
     box-shadow: 0 0 5px 2px var(--light-primary);
     cursor: pointer;
 }
 
-.card-item--selected .btn--emoji__back--selected {
+.card-item--selected .btn--pokemon__back--selected {
     border: 2px solid var(--dark-primary);
     box-shadow: 0 0 5px 2px var(--light-primary);
 }
 
-/*===========================
-Screen reader only
-============================*/
+
 .sr-only {
 	border: 0 !important;
 	clip: rect(1px, 1px, 1px, 1px) !important;
@@ -213,15 +219,12 @@ Screen reader only
 	white-space: nowrap !important;
 }
 
-/*===========================
-Media queries
-============================*/
 @media (min-width: 768px) {
     h1 {
         font-size: 2.75rem;
     }
 
-    .btn--emoji {
+    .btn--pokemon {
         font-size: 4rem;
         height: 110px;
     }
@@ -236,7 +239,7 @@ Media queries
         font-size: 3.25rem;
     }
 
-    .btn--emoji {
+    .btn--pokemon {
         font-size: 4.5rem;
         height: 125px;
     }

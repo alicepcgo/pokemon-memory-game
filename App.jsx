@@ -4,12 +4,13 @@ import MemoryCard from '/components/MemoryCard'
 import AssistiveTechInfo from './components/AssistiveTechInfo'
 import GameOver from './components/GameOver'
 import ErrorCard from './components/CardError'
+import {pokemon} from './data/data';
 
 export default function App() {
 
-    const [formData, setFormData] = useState({category:"animals%20and%20nature", number: 10})
+    const [formData, setFormData] = useState({category:"Normal", number: 10})
     const [isGameOn, setIsGameOn] = useState(false)
-    const [emojisData, setEmojisData] = useState([])
+    const [pokemonsData, setPokemonsData] = useState([])
     const [selectedCards, setSelectedCards] = useState([])
     const [matchedCards, setMatchedCards] = useState([]) 
     const [areAllCardsMatched, setAreAllCardsMatched] = useState(false)
@@ -22,7 +23,7 @@ export default function App() {
     }, [selectedCards])
 
     useEffect(() => {
-        if (emojisData.length && matchedCards.length === emojisData.length) {
+        if (pokemonsData.length && matchedCards.length === pokemonsData.length) {
             setAreAllCardsMatched(true)
         }
     }, [matchedCards])
@@ -30,17 +31,11 @@ export default function App() {
     async function startGame(e) {
         e.preventDefault()
         
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/emojis?category=${formData.category}`)
-            
-            if (!response.ok) {
-                throw new Error("Could not fetch data from API")
-            }
-            
-            const data = await response.json()
+        try {            
+            const data = pokemon.filter(({type})=> type.includes(formData.category))
             const dataSlice = getDataSlice(data)
-            const emojisArray = getEmojiArray(dataSlice)
-            setEmojisData(emojisArray);
+            const pokemonsArray = getPokemonArray(dataSlice)
+            setPokemonsData(pokemonsArray);
             setIsGameOn(true)
         } catch(err) {
             console.error(err)
@@ -48,7 +43,7 @@ export default function App() {
         }   
     }
 
-    function getEmojiArray(data){
+    function getPokemonArray(data){
         return [...data, ...data].map(item => {return {item, sort: Math.random()}}).sort((a,b) => a.sort - b.sort).map(({item}) => item)
     }
 
@@ -85,11 +80,11 @@ export default function App() {
         <main>
             <h1>Memory</h1>
             {!isGameOn && <Form handleSubmit={startGame} handleChange={handleFormChange} />}
-            {isGameOn && !areAllCardsMatched && <AssistiveTechInfo emojisData={emojisData} matchedCards={matchedCards}/>}
+            {isGameOn && !areAllCardsMatched && <AssistiveTechInfo pokemonsData={pokemonsData} matchedCards={matchedCards}/>}
             {areAllCardsMatched && <GameOver handleSubmit={resetGame} />}
             {isGameOn && 
                 <MemoryCard 
-                    data={emojisData}
+                    data={pokemonsData}
                     handleClick={turnCard} 
                     selectedCards={selectedCards}
                     matchedCards={matchedCards}
