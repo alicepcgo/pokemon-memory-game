@@ -1,19 +1,53 @@
-# Getting Started
-Install the dependencies and run the project
-```
-npm install
-npm start
-```
+# Pokemon Memory Game
 
-Head over to https://vitejs.dev/ to learn more about configuring vite
-## About Scrimba
+A simple memory card game built with React, featuring Pokémon characters. This project was developed as part of a [course](https://youtu.be/MzVbgZgGON4?si=Ab603ZuYYlLUuiTO) promoted by FreeCodeCamp.
 
-At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜
-If we succeed with this, it will give anyone who wants to become a software developer a realistic shot at succeeding, regardless of where they live and the size of their wallets 🎉
-The Frontend Developer Career Path aims to teach you everything you need to become a Junior Developer, or you could take a deep-dive with one of our advanced courses 🚀
+## Features
+- Choose the Pokémon type for the cards.
+- Select the number of cards to play.
+- Simple and fun gameplay!
 
-- [Our courses](https://scrimba.com/allcourses)
-- [The Frontend Career Path](https://scrimba.com/learn/frontend)
-- [Become a Scrimba Pro member](https://scrimba.com/pricing)
+## Disclaimer
+This project is a fan-made game and is not affiliated with, endorsed, or sponsored by Nintendo, Game Freak, or The Pokémon Company. All Pokémon names, images, and related assets belong to their respective owners.
 
-Happy Coding!
+## Installation
+To run the project locally, follow these steps:
+
+### Prerequisites
+- Node.js (>= 14.0.0)
+- npm or yarn
+
+### Steps
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-username/pokemon-memory-game.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd pokemon-memory-game
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   # or
+   yarn install
+   ```
+4. Start the development server:
+   ```sh
+   npm start
+   # or
+   yarn start
+   ```
+5. Open your browser and go to:
+   ```
+   http://localhost:3000
+   ```
+
+## How to Play
+1. Select the type of Pokémon you want to play with.
+2. Choose the number of cards for the game.
+3. Flip two cards at a time to find matching pairs.
+4. Keep playing until you match all pairs!
+
+Enjoy the game!
+
